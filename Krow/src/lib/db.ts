@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import type { Project, Milestone, Repository, Review, Payout } from '@/lib/types';
 
-const DB_FILE = path.join(process.cwd(), 'src/lib/db.json');
+const DB_FILE = process.env.NODE_ENV === 'production' ? '/tmp/escrow_db.json' : path.join(process.cwd(), 'src/lib/db.json');
 
 function readDbFile(): Record<string, any[]> {
   try {
