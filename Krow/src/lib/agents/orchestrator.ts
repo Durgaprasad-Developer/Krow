@@ -68,8 +68,8 @@ export async function startPipeline(
   };
   const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
-  // ── Run asynchronously so the API can return the initial state immediately ─
-  (async () => {
+  // ── Run synchronously so Vercel lambda doesn't freeze ─
+  await (async () => {
     try {
       // ── Stage 1: GitHub ──────────────────────────────────────────────────
       state.currentAgent = 'github';
